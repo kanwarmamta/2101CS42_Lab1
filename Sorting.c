@@ -53,6 +53,40 @@ void selection_sort(int array[], int size)
         swap(&array[min_idx], &array[step]);
     }
 }
+// Bubble Sort Function
+void bubble_sort(int array[], int size)
+{
+
+    for (int step = 0; step < size - 1; ++step)
+    {
+
+        int swapped = 0;
+
+        // loop to compare array elements
+        for (int i = 0; i < size - step - 1; ++i)
+        {
+
+            // compare two array elements
+            // change > to < to sort in descending order
+            if (array[i] > array[i + 1])
+            {
+
+                // swapping
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+
+                swapped = 1;
+            }
+        }
+
+        // no swapping means the array is already sorted so no need for further comparison
+        if (swapped == 0)
+        {
+            break;
+        }
+    }
+}
 
 int main(void)
 {
@@ -83,9 +117,14 @@ int main(void)
         printf("Sorted array in ascending order through Insertion sort:\n");
         print_array(arr, n);
         break;
-        case 2:
+    case 2:
         selection_sort(arr, n);
         printf("Sorted array in Ascending Order through Selection Sort :\n");
+        print_array(arr, n);
+        break;
+    case 3:
+        bubble_sort(arr, n);
+        printf("Sorted Array in Ascending Order through Bubble Sort:\n");
         print_array(arr, n);
         break;
     }
