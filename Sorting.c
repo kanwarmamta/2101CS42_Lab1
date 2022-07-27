@@ -26,6 +26,33 @@ void insertion_sort(int array[], int size)
         array[j + 1] = key;
     }
 }
+// function to swap the the position of two elements
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Selection Sort Function
+void selection_sort(int array[], int size)
+{
+    for (int step = 0; step < size - 1; step++)
+    {
+        int min_idx = step;
+        for (int i = step + 1; i < size; i++)
+        {
+
+            // To sort in descending order, change > to < in this line.
+
+            if (array[i] < array[min_idx])
+                min_idx = i;
+        }
+
+        // putting min number at required position
+        swap(&array[min_idx], &array[step]);
+    }
+}
 
 int main(void)
 {
@@ -54,6 +81,11 @@ int main(void)
     case 1:
         insertion_sort(arr, n);
         printf("Sorted array in ascending order through Insertion sort:\n");
+        print_array(arr, n);
+        break;
+        case 2:
+        selection_sort(arr, n);
+        printf("Sorted array in Ascending Order through Selection Sort :\n");
         print_array(arr, n);
         break;
     }
