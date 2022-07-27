@@ -18,6 +18,9 @@ int main()
     case '-':
         printf("%f-%f=%f", num1, num2, num1 - num2);
         break;
+    case '*':
+        printf("%f*%f=%f", num1, num2, num1 * num2);
+        break;
     }
     return 0;
 }
