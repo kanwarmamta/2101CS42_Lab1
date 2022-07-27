@@ -155,7 +155,48 @@ void merge_sort(int arr[], int l, int r)
         merge(arr, l, m, r);
     }
 }
+// function to find the partition position
+int partition(int array[], int low, int high)
+{
 
+    // selecting rightmost element as pivot
+    int pivot = array[high];
+    int i = (low - 1);
+    // traverse each element of the array compare them with the pivot
+    for (int j = low; j < high; j++)
+    {
+        if (array[j] <= pivot)
+        {
+
+            // swapping elements smaller than pivot by greater element pointed by i
+            i++;
+
+            // swap element at i with element at j
+            swap(&array[i], &array[j]);
+        }
+    }
+
+    // swap the pivot element with the greater element at i
+    swap(&array[i + 1], &array[high]);
+
+    // return the partition point
+    return (i + 1);
+}
+// Quick Sort Function
+void quick_sort(int array[], int low, int high)
+{
+    if (low < high)
+    {
+        // find the pivot element such that elements smaller than pivot are on left of pivot elements greater than pivot are on right of pivot
+        int pi = partition(array, low, high);
+
+        // recursive call on the left of pivot
+        quick_sort(array, low, pi - 1);
+
+        // recursive call on the right of pivot
+        quick_sort(array, pi + 1, high);
+    }
+}
 int main(void)
 {
 
@@ -198,6 +239,11 @@ int main(void)
     case 4:
         merge_sort(arr, 0, n - 1);
         printf("Sorted Array in Ascending Order through Merge Sort:\n");
+        print_array(arr, n);
+        break;
+    case 5:
+        quick_sort(arr, 0, n - 1);
+        printf("Sorted Array in Ascending Order through Quick Sort:\n");
         print_array(arr, n);
         break;
     }
